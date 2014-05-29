@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_bg"
+        android:gravity="center"
+        android:text="我的"
+        android:textSize="17sp" />
+
+    <RelativeLayout
+        android:id="@+id/re_mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp" >
+
+        <ImageView
+            android:id="@+id/iv_mine_one"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_centerVertical="true" 
+            android:src="@drawable/andy"
+            
+            />
+
+        <TextView
+            android:id="@+id/tv_mine_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" 
+            android:layout_marginLeft="20dp" 
+            android:layout_toRightOf="@id/iv_mine_one"
+            android:text="刘德华"
+            android:textSize="15dp"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_mine_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" 
+            android:layout_marginLeft="80dp"
+            android:layout_toRightOf="@id/tv_mine_one"
+            android:background="@drawable/tab_mine" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp" />
+
+</LinearLayout>
