@@ -68,6 +68,7 @@ public class SplashActivity extends Activity {
 							LoginActivity.class);
 					startActivity(intent);
 					SplashActivity.this.finish();
+					
 				}
 			}
 			super.onPostExecute(result);

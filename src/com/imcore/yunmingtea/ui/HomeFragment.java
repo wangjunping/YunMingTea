@@ -1,8 +1,12 @@
 package com.imcore.yunmingtea.ui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.imcore.yunmingtea.R;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +30,7 @@ public class HomeFragment extends Fragment implements OnClickListener{
 	public static String IMG = "key";
 	private ImageButton mImgBtn1,mImgBtn2,mImgBtn3,mImgBtn4;
 	
+	private int items;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -41,11 +46,13 @@ public class HomeFragment extends Fragment implements OnClickListener{
 		mImgBtn2 = (ImageButton) view.findViewById(R.id.imgbtn2);
 		mImgBtn3 = (ImageButton) view.findViewById(R.id.imgbtn3);
 		mImgBtn4 = (ImageButton) view.findViewById(R.id.imgbtn4);
-		
+//		mViewPager.setVisibility()
 		mImgBtn1.setOnClickListener(this);
 		mImgBtn2.setOnClickListener(this);
 		mImgBtn3.setOnClickListener(this);
 		mImgBtn4.setOnClickListener(this);
+		
+		autoMoveTopImages();
 		return view;
 	
 	}
@@ -94,8 +101,38 @@ public class HomeFragment extends Fragment implements OnClickListener{
 					ContactActivity.class);
 			startActivity(intent4);
 			break;
+		}
 		
 	}
 	
-	
-	}}
+		private void autoMoveTopImages() {
+			TimerTask task = new TimerTask() {
+				
+				@Override
+				public void run() {
+					ChangeTopImages aChangeTopImages = new ChangeTopImages();
+					aChangeTopImages.execute(items);
+					items++;
+					if(items>5) {
+						items = 0;
+					}
+				}
+			};
+			Timer timer = new Timer();
+			timer.schedule(task,0,3000);
+		}
+		
+		class ChangeTopImages extends AsyncTask<Integer, Void, Integer> {
+			
+			@Override
+			protected void onPostExecute(Integer result) {
+				mViewPager.setCurrentItem(result);
+				super.onPostExecute(result);
+			}
+
+			@Override
+			protected Integer doInBackground(Integer... params) {
+				return params[0];
+			}
+	}
+	}

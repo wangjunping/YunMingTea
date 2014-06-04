@@ -75,40 +75,45 @@ public final class R {
         public static final int title_bg=0x7f02002d;
     }
     public static final class id {
-        public static final int action_settings=0x7f090022;
+        public static final int action_settings=0x7f090027;
         public static final int btn_login=0x7f090004;
-        public static final int btn_more=0x7f09001a;
+        public static final int btn_more=0x7f09001b;
         public static final int btn_register=0x7f090003;
+        public static final int el_expandable=0x7f090011;
         public static final int et_password=0x7f090002;
         public static final int et_top=0x7f09000a;
         public static final int et_username=0x7f090001;
-        public static final int ib_mine_one=0x7f090015;
-        public static final int img_fragment=0x7f09001c;
+        public static final int ib_mine_one=0x7f090016;
+        public static final int img_fragment=0x7f09001d;
         public static final int img_logo=0x7f090009;
         public static final int imgbtn1=0x7f09000c;
         public static final int imgbtn2=0x7f09000d;
         public static final int imgbtn3=0x7f09000e;
         public static final int imgbtn4=0x7f09000f;
-        public static final int iv_mine_one=0x7f090013;
-        public static final int iv_mine_three=0x7f09001e;
-        public static final int iv_one=0x7f09001f;
-        public static final int iv_three=0x7f090021;
+        public static final int iv_class=0x7f09001e;
+        public static final int iv_mine_one=0x7f090014;
+        public static final int iv_mine_three=0x7f090021;
+        public static final int iv_one=0x7f090022;
+        public static final int iv_section=0x7f090025;
+        public static final int iv_three=0x7f090024;
         public static final int layout_frgmt_container=0x7f090005;
         public static final int liner_top=0x7f090008;
-        public static final int lv_mine=0x7f090016;
-        public static final int lv_more=0x7f090018;
-        public static final int re=0x7f090019;
-        public static final int re_mine=0x7f090012;
+        public static final int lv_mine=0x7f090017;
+        public static final int lv_more=0x7f090019;
+        public static final int re=0x7f09001a;
+        public static final int re_mine=0x7f090013;
         public static final int tab_host=0x7f090006;
         public static final int tabs=0x7f090007;
-        public static final int tv_indicator=0x7f09001b;
+        public static final int tv_class=0x7f09001f;
+        public static final int tv_indicator=0x7f09001c;
         public static final int tv_login=0x7f090000;
         public static final int tv_mall=0x7f090010;
-        public static final int tv_mine=0x7f090011;
-        public static final int tv_mine_one=0x7f090014;
-        public static final int tv_mine_two=0x7f09001d;
-        public static final int tv_more=0x7f090017;
-        public static final int tv_two=0x7f090020;
+        public static final int tv_mine=0x7f090012;
+        public static final int tv_mine_one=0x7f090015;
+        public static final int tv_mine_two=0x7f090020;
+        public static final int tv_more=0x7f090018;
+        public static final int tv_section=0x7f090026;
+        public static final int tv_two=0x7f090023;
         public static final int viewpager_tea=0x7f09000b;
     }
     public static final class layout {
@@ -125,8 +130,10 @@ public final class R {
         public static final int fragment_more=0x7f03000a;
         public static final int tab_indicator=0x7f03000b;
         public static final int topimage_fragment=0x7f03000c;
-        public static final int view_mine_list=0x7f03000d;
-        public static final int view_more_list=0x7f03000e;
+        public static final int view_class_list=0x7f03000d;
+        public static final int view_mine_list=0x7f03000e;
+        public static final int view_more_list=0x7f03000f;
+        public static final int view_section_list=0x7f030010;
     }
     public static final class menu {
         public static final int contact=0x7f080000;

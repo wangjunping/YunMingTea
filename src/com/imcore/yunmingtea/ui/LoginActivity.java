@@ -55,9 +55,14 @@ public class LoginActivity extends Activity {
 		if (!ConnectivityUtil.isOnline(this)) {
 			return;
 		}
+		
 		String userName = tvUserName.getText().toString();
 		String passWord = tvPassWord.getText().toString();
+		if(userName==null&&passWord==null){
+			Toast.makeText(this, "«Î ‰»Î’À∫≈√‹¬Î", Toast.LENGTH_SHORT).show();
+		}else{
 		new LoginTask(userName, passWord).execute();
+		}
 	}
 
 	private class LoginTask extends AsyncTask<Void, Void, String> {
@@ -117,6 +122,7 @@ public class LoginActivity extends Activity {
 				Intent intent = new Intent(LoginActivity.this,
 						MainActivity.class);
 				startActivity(intent);
+				finish();
 				super.onPostExecute(result);
 			} else {
 				ToastUtil.showToast(LoginActivity.this, mEntity.getMessage());

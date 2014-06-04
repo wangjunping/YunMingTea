@@ -12,4 +12,12 @@
         android:text="产品分类"
         android:textSize="17sp" />
 
+    <ExpandableListView
+        android:id="@+id/el_expandable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_mall" >
+
+    </ExpandableListView>
+
 </RelativeLayout>

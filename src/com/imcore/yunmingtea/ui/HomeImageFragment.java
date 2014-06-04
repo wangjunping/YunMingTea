@@ -31,5 +31,10 @@ public class HomeImageFragment extends Fragment {
 		return view;
 	}
 	
+	
+		
 	}
+
+	
+	
 
