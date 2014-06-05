@@ -51,6 +51,10 @@
             android:name="com.imcore.yunmingtea.ui.ContactActivity"
             android:label="@string/title_activity_contact" >
         </activity>
+        <activity
+            android:name="com.imcore.yunmingtea.ui.DetailActivity"
+            android:label="@string/title_activity_detail" >
+        </activity>
     </application>
 
 </manifest>

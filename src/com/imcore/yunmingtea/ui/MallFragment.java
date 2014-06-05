@@ -10,6 +10,7 @@ import com.imcore.yunmingtea.http.ResponseJsonEntity;
 import com.imcore.yunmingtea.image.ImageFetcher;
 import com.imcore.yunmingtea.util.JsonUtil;
 
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.HeterogeneousExpandableList;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,7 +46,19 @@ public class MallFragment extends Fragment{
 		//¥Û¿‡
 		new ClassTask().execute();
 		
-	   
+          expandable.setOnChildClickListener(new OnChildClickListener() {
+			
+			@Override
+			public boolean onChildClick(ExpandableListView arg0, View arg1, int arg2,
+					int arg3, long arg4) {
+				Intent intent = new Intent(getActivity(),DetailActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putLong("ComID", smartList.get(arg3).getParentId());
+				intent.putExtra("CommId", bundle);
+				startActivity(intent);
+				return true;
+			}
+		});
 		
 		return view;
 	}

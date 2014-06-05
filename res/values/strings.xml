@@ -8,5 +8,6 @@
     <string name="title_activity_hot">HotActivity</string>
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_activity_contact">ContactActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 </resources>
