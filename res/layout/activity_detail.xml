@@ -57,24 +57,28 @@
             android:layout_width="wrap_content"  
             android:layout_height="wrap_content"  
             android:text="筛选"  
-        />  
-      
-      <Button 
-            android:id="@+id/btn1"  
-            android:layout_toRightOf="@id/radiobutton2"
-            android:layout_marginLeft="60dp"
-            android:layout_width="40dp"  
-            android:layout_height="40dp"
-            android:background="@drawable/tab_listview_details"
-            />
-      <Button 
-            android:id="@+id/btn2"
-            android:layout_toRightOf="@id/btn1"
-            android:layout_marginLeft="20dp"  
-            android:layout_width="40dp"  
-            android:layout_height="40dp"
-            android:background="@drawable/tab_gridview_details"
-            />
+        />
+
+      <Button
+          android:id="@+id/btn2"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_alignBaseline="@+id/btn1"
+          android:layout_alignBottom="@+id/btn1"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="14dp"
+          android:background="@drawable/tab_gridview_details" />
+
+      <Button
+          android:id="@+id/btn1"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_alignBaseline="@+id/radiobutton2"
+          android:layout_alignBottom="@+id/radiobutton2"
+          android:layout_marginRight="15dp"
+          android:layout_toLeftOf="@+id/btn2"
+          android:background="@drawable/tab_listview_details" />
+
     </RelativeLayout>
     
     <RelativeLayout 

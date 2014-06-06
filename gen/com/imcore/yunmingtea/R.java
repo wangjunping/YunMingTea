@@ -87,8 +87,8 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f090037;
-        public static final int btn1=0x7f090006;
-        public static final int btn2=0x7f090007;
+        public static final int btn1=0x7f090007;
+        public static final int btn2=0x7f090006;
         public static final int btn_login=0x7f09000f;
         public static final int btn_more=0x7f090026;
         public static final int btn_register=0x7f09000e;

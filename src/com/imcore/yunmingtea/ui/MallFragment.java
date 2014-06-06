@@ -53,7 +53,7 @@ public class MallFragment extends Fragment{
 					int arg3, long arg4) {
 				Intent intent = new Intent(getActivity(),DetailActivity.class);
 				Bundle bundle = new Bundle();
-				bundle.putLong("ComID", smartList.get(arg3).getParentId());
+				bundle.putLong("ComID", mList.get(arg2).get((int)arg4).getId());
 				intent.putExtra("CommId", bundle);
 				startActivity(intent);
 				return true;
@@ -74,7 +74,7 @@ public class MallFragment extends Fragment{
 		@Override
 		public boolean isChildSelectable(int arg0, int arg1) {
 
-			return false;
+			return true;
 		}
 		
 		@Override

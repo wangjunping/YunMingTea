@@ -1,6 +1,7 @@
 package com.imcore.yunmingtea.ui;
 
 public class SmartClass {
+	public long id;
 	public String categoryName;
 	public String description;
 	public String imageUrl;
@@ -9,6 +10,13 @@ public class SmartClass {
 	public String updatedTime;
 	public String createdTime;
 	public long status;
+	
+public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 public String getCategoryName() {
 	return categoryName;
 }

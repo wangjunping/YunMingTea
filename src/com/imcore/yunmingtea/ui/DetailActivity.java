@@ -21,11 +21,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -38,13 +38,13 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class DetailActivity extends Activity implements OnClickListener {
+public class DetailActivity extends Activity implements android.view.View.OnClickListener {
 
 	private GridView gv;
 	private ListView lv;
-	private RadioButton rb1;
+	private RadioButton rb1;//排序
 	private RadioButton rb2;
-	private Button btn1;
+	private Button btn1;//ListView按钮。。
 	private Button btn2;
 	private List<Commodity> myCommList;
 	private Long id;
@@ -76,6 +76,7 @@ public class DetailActivity extends Activity implements OnClickListener {
 		Bundle bundle = getIntent().getBundleExtra("CommId");
 		id = bundle.getLong("ComID");
 		new CommodityTask("", 0).execute();
+		
 	}
 
 	class CommodityTask extends AsyncTask<Void, Void, Void> {
@@ -105,26 +106,44 @@ public class DetailActivity extends Activity implements OnClickListener {
 
 				myCommList = JsonUtil.toObjectList(data, cla);
 
-				for (int i = 0; i < myCommList.size(); i++) {
-					Log.i("ee", myCommList.get(i).getImageUrl() +
-
-					myCommList.get(i).getProductName());
-					String imgUrl = myCommList.get(i).getImageUrl();
-					new ImgTask().execute(HttpHelper.DOMAIN
-
-					+ "/" + imgUrl);
-				}
+//				for (int i = 0; i < myCommList.size(); i++) {
+//					Log.i("ee", myCommList.get(i).getImageUrl() +myCommList.get(i).getProductName());
+//					String imgUrl = myCommList.get(i).getImageUrl();
+//					System.out.println("before");
+//					new ImgTask().execute(HttpHelper.DOMAIN+ "/" + imgUrl);
+//					System.out.println("after");
+//				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
 			return null;
 		}
+		@Override
+		protected void onPostExecute(Void result) {
+			for (int i = 0; i < myCommList.size(); i++) {
+				Log.i("ee", myCommList.get(i).getImageUrl() +myCommList.get(i).getProductName());
+				String imgUrl = myCommList.get(i).getImageUrl();
+				System.out.println("before");
+//				new ImgTask().execute(HttpHelper.DOMAIN+ "/" + imgUrl);
+				System.out.println("after");
+				gv.setAdapter(new CommodityAdapter());
+				lv.setAdapter(new CommodityAdapter());
+				lv.setVisibility(View.GONE);
+			}
+			super.onPostExecute(result);
+		}
 
 	}
 
 	class ImgTask extends AsyncTask<String, Void, Void> {
 		private String imgUrl;
+		
+		@Override
+		protected void onPreExecute() {//准备时，进度条。。。
+			pd = ProgressDialog.show(DetailActivity.this, "芸茗茶叶", "正在加载");
+			super.onPreExecute();
+		}
 
 		@Override
 		protected Void doInBackground(String... params) {
@@ -135,28 +154,20 @@ public class DetailActivity extends Activity implements OnClickListener {
 		}
 
 		@Override
-		protected void onPreExecute() {
-			pd = ProgressDialog.show(DetailActivity.this, "芸茗茶叶", "正在加载");
-			super.onPreExecute();
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(Void result) {//在结果这里设置适配器。。。
 			super.onPostExecute(result);
+			pd.dismiss();
 			gv.setAdapter(new CommodityAdapter());
 			lv.setAdapter(new CommodityAdapter());
 			lv.setVisibility(View.GONE);
-			pd.dismiss();
 		}
-
+      
 	}
 
 	private class CommodityAdapter extends BaseAdapter {
 		@Override
 		public int getCount() {
-			if (id == 5) {
-				return 7;
-			}
+		
 			return myCommList.size();
 		}
 
@@ -168,7 +179,6 @@ public class DetailActivity extends Activity implements OnClickListener {
 
 		@Override
 		public long getItemId(int arg0) {
-			// TODO Auto-generated method stub
 			return arg0;
 		}
 
@@ -178,28 +188,17 @@ public class DetailActivity extends Activity implements OnClickListener {
 			View view = arg1;
 			ViewHolder viewHolder = null;
 			if (viewHolder == null) {
-				view = getLayoutInflater().inflate(R.layout.view_detail_list,
-
-				null);
+				view = getLayoutInflater().inflate(R.layout.view_detail_list,null);
 				viewHolder = new ViewHolder();
-				viewHolder.tvName = (TextView) view.findViewById
-
-				(R.id.tv_commodity_name);
-				viewHolder.tvPrice = (TextView) view.findViewById
-
-				(R.id.tv_commodity_price);
-				viewHolder.tvsaleTotal = (TextView) view.findViewById
-
-				(R.id.tv_commodity_saleTotal);
-				viewHolder.tvfavotieTotal = (TextView) view.findViewById
-
-				(R.id.tv_commodity_favotieTotal);
-				viewHolder.img = (ImageView) view
-						.findViewById(R.id.img_commodity);
+				viewHolder.tvName = (TextView) view.findViewById(R.id.tv_commodity_name);
+				viewHolder.tvPrice = (TextView) view.findViewById(R.id.tv_commodity_price);
+				viewHolder.tvsaleTotal = (TextView) view.findViewById(R.id.tv_commodity_saleTotal);
+				viewHolder.tvfavotieTotal = (TextView) view.findViewById(R.id.tv_commodity_favotieTotal);
+				viewHolder.img = (ImageView) view.findViewById(R.id.img_commodity);
 				view.setTag(viewHolder);
-				if (((Checkable) btn1).isChecked()) {////
-
-				}
+//				if (((Checkable) btn1).isChecked()) {
+//
+//				}
 			} else {
 				viewHolder = (ViewHolder) view.getTag();
 			}
@@ -207,9 +206,8 @@ public class DetailActivity extends Activity implements OnClickListener {
 			long price = myCommList.get(arg0).getPrice();
 			long saleTotal = myCommList.get(arg0).getSaleTotal();
 			long favotieTotal = myCommList.get(arg0).getFavotieTotal();
-			new ImageFetcher().fetch("http://yunming-api.suryani.cn" + "/" +
-
-			myCommList.get(arg0).getImageUrl(), viewHolder.img);
+			new ImageFetcher().fetch("http://yunming-api.suryani.cn" + "/" +myCommList.get(arg0).getImageUrl(), viewHolder.img);
+			
 			viewHolder.tvName.setText(Name);
 			viewHolder.tvPrice.setText("￥" + price);
 			viewHolder.tvsaleTotal.setText("销量：" + saleTotal);
@@ -254,50 +252,49 @@ public class DetailActivity extends Activity implements OnClickListener {
 				new AlertDialog.Builder(DetailActivity.this)
 						.setTitle("请选择排序方式").setSingleChoiceItems(sort, sortIndex,
 								new OnClickListener() {
-						
 
-							public void onClick(DialogInterface arg0,int arg1) {
-								switch (arg1) {
-								case 0:
-									orderBy = "price";
-									desc = 0;
-									break;
-								case 1:
-									orderBy = "price";
-									desc = 1;
-									break;
-								case 2:
-									break;
-								case 3:
-									break;
-								case 4:
-									break;
-								case 5:
-									break;
+									@Override
+									public void onClick(DialogInterface arg0,
+											int arg1) {
+										switch (arg1) {
+										case 0:
+											orderBy = "price";
+											desc = 0;
+											break;
+										case 1:
+											orderBy = "price";
+											desc = 1;
+											break;
+										case 2:
+											break;
+										case 3:
+											break;
+										case 4:
+											break;
+										case 5:
+											break;
 
-								default:
-									break;
-								}
-								sortIndex = arg1;
-							}
-
-							@Override
-							public void onClick(View arg0) {
-								// TODO Auto-generated method stub
+										default:
+											break;
+										}
+										sortIndex = arg1;
+									}
 								
-							}	
-								})
-						.setPositiveButton("确认", new OnClickListener() {
-
-							public void onClick(DialogInterface arg0, int arg1) {
-
-								new CommodityTask(orderBy, desc).execute();
-
-							}
-
-						}).setNegativeButton("取消", null).show();
-			}
+										
+									}).setPositiveButton("确认", new OnClickListener() {
+										
+										@Override
+										public void onClick(DialogInterface arg0, int arg1) {
+										
+											new CommodityTask(orderBy, desc).execute();//在传入两个值。异步加载。。。
+										}
+									}).setNegativeButton("取消", null).show();
+									
+									
 		}
 
 	}
+
+	
+}
 
