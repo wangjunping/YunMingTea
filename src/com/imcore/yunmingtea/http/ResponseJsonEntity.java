@@ -3,26 +3,26 @@ package com.imcore.yunmingtea.http;
 import com.imcore.yunmingtea.util.JsonUtil;
 
 /**
- * JSON¸ñÊ½httpÏìÓ¦ÊµÌå½á¹¹¶¨Òå£¬°´ÕÕºóÌ¨½Ó¿ÚËµÃ÷£¬°Ñ×Ö¶ÎÐÅÏ¢·â×°Îª¸ÃÀàµÄÊµÀý
+ * JSONï¿½ï¿½Ê½httpï¿½ï¿½Ó¦Êµï¿½ï¿½á¹¹ï¿½ï¿½ï¿½å£¬ï¿½ï¿½ï¿½Õºï¿½Ì¨ï¿½Ó¿ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½×°Îªï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
  * 
  * @author Li Bin
  */
 public class ResponseJsonEntity {
-	// ÏìÓ¦×´Ì¬£º200±íÊ¾³É¹¦
+	// ï¿½ï¿½Ó¦×´Ì¬ï¿½ï¿½200ï¿½ï¿½Ê¾ï¿½É¹ï¿½
 	private int status;
 
-	// ÏìÓ¦Êý¾ÝÊµÌåµÄjson×Ö·û´®ÐÎÊ½
+	// ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½jsonï¿½Ö·ï¿½ï¿½ï¿½Ê½
 	private String data;
 
-	// µ±status²»Îª200Ê±£¬´íÎóÃèÊö
+	// ï¿½ï¿½statusï¿½ï¿½Îª200Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String message;
 
-	// Ë½ÓÐ¹¹Ôìº¯Êý£¬±ÜÃâ¿ª·¢ÈËÔ±Ö±½Ó¹¹ÔìÊµÀý
+	// Ë½ï¿½Ð¹ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½ï¿½â¿ªï¿½ï¿½ï¿½ï¿½Ô±Ö±ï¿½Ó¹ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	private ResponseJsonEntity() {
 	}
 
 	/**
-	 * ¸ù¾Ý¸ø¶¨µÄjson×Ö·û´®¹¹Ôì¸ÃÀàÊµÀý£¬°ÑjsonÖÐµÄÊý¾Ý½á¹¹Ó³Éäµ½¸ÃÊµÀýÖÐ
+	 * ï¿½ï¿½Ý¸ï¿½ï¿½jsonï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½jsonï¿½Ðµï¿½ï¿½ï¿½Ý½á¹¹Ó³ï¿½äµ½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param json
 	 * @return

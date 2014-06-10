@@ -9,5 +9,6 @@
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_activity_contact">ContactActivity</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_producat_detail">ProducatDetailActivity</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.imcore.yunmingtea.ui;
 
 public class Commodity {
+	public long id;
    public long data;
    public long categoryId;
    public String ProductName;
@@ -15,6 +16,13 @@ public class Commodity {
    public long price;
    public long saleTotal;
    public long favotieTotal;
+   
+public long getId() {
+	return id;
+}
+public void setId(long id) {
+	this.id = id;
+}
 public long getData() {
 	return data;
 }

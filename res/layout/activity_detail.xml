@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".DetailActivity" >
+    tools:context=".DetailActivity" 
+    android:background="@drawable/aaaaa">
 
     <RelativeLayout 
         android:id="@+id/rlayout_details1"
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/title_bg"
         android:gravity="center"
-        android:text="大红袍"
+        
         android:textSize="17sp"
         android:paddingTop="0dp" />
     

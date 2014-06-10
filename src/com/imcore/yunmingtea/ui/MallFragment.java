@@ -8,12 +8,15 @@ import com.imcore.yunmingtea.http.HttpHelper;
 import com.imcore.yunmingtea.http.RequestEntity;
 import com.imcore.yunmingtea.http.ResponseJsonEntity;
 import com.imcore.yunmingtea.image.ImageFetcher;
+import com.imcore.yunmingtea.model.BigClass;
+import com.imcore.yunmingtea.model.SmartClass;
 import com.imcore.yunmingtea.util.JsonUtil;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings.SettingNotFoundException;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;

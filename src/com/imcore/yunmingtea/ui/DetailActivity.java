@@ -27,6 +27,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -50,6 +52,7 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 	private Long id;
 	private ProgressDialog pd;
 	private static int sortIndex = 0;
+	private Button btn3;//·µ»Ø¼àÌý¡£¡£¡£
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,37 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 		rb2 = (RadioButton) findViewById(R.id.radiobutton2);
 		btn1 = (Button) findViewById(R.id.btn1);
 		btn2 = (Button) findViewById(R.id.btn2);
-
+		
+		btn3 =(Button) findViewById(R.id.ib_details);
+        
 		add();
 		rb1.setOnClickListener(this);
 		rb2.setOnClickListener(this);
 		btn1.setOnClickListener(this);
 		btn2.setOnClickListener(this);
+		btn3.setOnClickListener(this);
+
+		gv.setOnItemClickListener(new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+		Intent intent =  new Intent(DetailActivity.this,ProducatDetailActivity.class);
+//		Bundle bundle = new Bundle();
+//			bundle.putLong("id", myCommList.get(arg2).id);
+			intent.putExtra("proId",  myCommList.get(arg2).id);
+			startActivity(intent);
+		
+			
+		}
+		});
+		
+		
 	}
+	
+	
+	
+	
 
 	private void add() {
 		// Intent intent = getIntent();
@@ -238,6 +265,9 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 		case R.id.radiobutton2:
 
 			break;
+		case R.id.ib_details:
+            finish();
+			break;
 		}
 	}
 		class AlertDialogInCommodity {
@@ -294,6 +324,8 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 		}
 
 	}
+		
+		
 
 	
 }
