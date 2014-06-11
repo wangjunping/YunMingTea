@@ -59,6 +59,10 @@
             android:name="com.imcore.yunmingtea.ui.ProducatDetailActivity"
             android:label="@string/title_activity_producat_detail" >
         </activity>
+        <activity
+            android:name="com.imcore.yunmingtea.ui.PackagingActivity"
+            android:label="@string/title_activity_packaging" >
+        </activity>
     </application>
 
 </manifest>

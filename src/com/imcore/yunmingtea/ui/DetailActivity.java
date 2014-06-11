@@ -53,6 +53,8 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 	private ProgressDialog pd;
 	private static int sortIndex = 0;
 	private Button btn3;//返回监听。。。
+	
+	private int FilterId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,23 +77,24 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 		btn2.setOnClickListener(this);
 		btn3.setOnClickListener(this);
 
-		gv.setOnItemClickListener(new OnItemClickListener() {
+		gv.setOnItemClickListener(listener);
+		lv.setOnItemClickListener(listener);
+		
+		
+	}
+	
+	private OnItemClickListener listener=new OnItemClickListener() {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-		Intent intent =  new Intent(DetailActivity.this,ProducatDetailActivity.class);
-//		Bundle bundle = new Bundle();
-//			bundle.putLong("id", myCommList.get(arg2).id);
-			intent.putExtra("proId",  myCommList.get(arg2).id);
-			startActivity(intent);
-		
-			
+			Intent intent =  new Intent(DetailActivity.this,ProducatDetailActivity.class);
+//			Bundle bundle = new Bundle();
+//				bundle.putLong("id", myCommList.get(arg2).id);
+				intent.putExtra("proId",  myCommList.get(arg2).id);
+				startActivity(intent);
 		}
-		});
-		
-		
-	}
+	};
 	
 	
 	
@@ -102,17 +105,18 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 		// Bundle bundle = intent.getBundleExtra("CommId");
 		Bundle bundle = getIntent().getBundleExtra("CommId");
 		id = bundle.getLong("ComID");
-		new CommodityTask("", 0).execute();
+		new CommodityTask("", 0,0).execute();
 		
 	}
 
 	class CommodityTask extends AsyncTask<Void, Void, Void> {
 		private String orderBy;
 		private int desc;
-
-		public CommodityTask(String orderBy, int desc) {
+		private int filterId;
+		public CommodityTask(String orderBy, int desc,int filterId) {
 			this.desc = desc;
 			this.orderBy = orderBy;
+			this.filterId = filterId;
 		}
 
 		@Override
@@ -122,6 +126,7 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 			map.put("id", id);// 要弄个全局的id 不然取不到。。。
 			map.put("orderBy", orderBy);
 			map.put("desc", desc);
+			map.put("filterId", filterId);
 			RequestEntity entity = new RequestEntity(url, HttpMethod.GET, map);
 			String js;
 			try {
@@ -263,7 +268,7 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 			new AlertDialogInCommodity();
 			break;
 		case R.id.radiobutton2:
-
+            new AlertDialogPriceFilter();
 			break;
 		case R.id.ib_details:
             finish();
@@ -316,17 +321,71 @@ public class DetailActivity extends Activity implements android.view.View.OnClic
 										@Override
 										public void onClick(DialogInterface arg0, int arg1) {
 										
-											new CommodityTask(orderBy, desc).execute();//在传入两个值。异步加载。。。
+											new CommodityTask(orderBy, desc,0).execute();//在传入两个值。异步加载。。。
+										}
+									}).setNegativeButton("取消", null).show();
+									
+									
+		}
+    }
+		
+		
+		private class AlertDialogPriceFilter {
+			AlertDialog dialog;
+			private int a=0;
+			private String orderBy;
+			private int desc;
+			private int filterId;
+			private int filterIndex;
+			String[] filter = new String[] {"默认","0-1000","1000-2000","2000-3000",">3000"};
+			public AlertDialogPriceFilter() {
+				orderBy = "";
+				desc = 0;
+				filterIndex = 0;
+				new AlertDialog.Builder(DetailActivity.this)
+						.setTitle("请选择排序方式").setSingleChoiceItems(filter, filterIndex,
+								new OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface arg0,
+											int arg1) {
+										switch (arg1) {
+										case 0:
+											filterId = 0;
+											break;
+										case 1:
+											filterId = 1;
+											break;
+										case 2:
+											filterId = 2;
+											break;
+										case 3:
+											filterId = 3;
+											break;
+										case 4:
+											filterId = 4;
+											break;
+										
+
+										default:
+											break;
+										}
+										filterIndex = arg1;
+									}
+								
+										
+									}).setPositiveButton("确认", new OnClickListener() {
+										
+										@Override
+										public void onClick(DialogInterface arg0, int arg1) {
+										
+											new CommodityTask(orderBy, desc,filterId).execute();//在传入两个值。异步加载。。。
 										}
 									}).setNegativeButton("取消", null).show();
 									
 									
 		}
 
-	}
-		
-		
-
 	
 }
-
+}

@@ -58,9 +58,13 @@ public class LoginActivity extends Activity {
 		
 		String userName = tvUserName.getText().toString();
 		String passWord = tvPassWord.getText().toString();
-		if(userName==null&&passWord==null){
+		if( userName==null|| userName.equals("")){
 			Toast.makeText(this, "请输入账号密码", Toast.LENGTH_SHORT).show();
-		}else{
+		}
+		if( passWord == null || passWord.equals("")){
+			Toast.makeText(this, "密码不能为空！", Toast.LENGTH_SHORT).show();
+		}
+		else {
 		new LoginTask(userName, passWord).execute();
 		}
 	}
